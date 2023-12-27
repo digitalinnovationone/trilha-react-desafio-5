@@ -11,6 +11,7 @@ import { getGlobalData } from '../utils/global-data';
 export default function Index({ posts, globalData }) {
   return (
     <Layout>
+      
       <SEO title={globalData.name} description={globalData.blogTitle} />
       <Header name={globalData.name} />
       <main className="w-full">
@@ -27,6 +28,7 @@ export default function Index({ posts, globalData }) {
                 as={`/posts/${post.id}`}
                 href={`/posts/${post.id}`}
               >
+                
                 <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
                   {post.created_ate && (
                     <p className="uppercase mb-3 font-bold opacity-60">
@@ -56,12 +58,14 @@ export default function Index({ posts, globalData }) {
         className="absolute bottom-0 opacity-20 dark:opacity-10"
       />
     </Layout>
+    
   );
 }
 
 export async function getServerSideProps() {
   const posts = await getPosts();
-  const globalData = getGlobalData();
+  const globalData = getGlobalData()
+
 
   return { props: { posts, globalData } };
 }
