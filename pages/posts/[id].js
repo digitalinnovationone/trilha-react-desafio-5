@@ -3,10 +3,7 @@ import {
   getPostBySlug,
 } from '../../utils/mdx-utils';
 
-import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
-import Link from 'next/link';
-import ArrowIcon from '../../components/ArrowIcon';
 import CustomLink from '../../components/CustomLink';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
@@ -19,10 +16,13 @@ const components = {
   Head,
 };
 
-export default function PostPage({
-  posts,
-  globalData,
-}) {
+export default function PostPage({ post, globalData }) {
+  console.log(post)  
+  if (!post) {
+    // Lidar com o caso em que o post não foi encontrado
+    return <p>Post não encontrado</p>;
+  }
+
   return (
     <Layout>
       <SEO
@@ -61,6 +61,7 @@ export default function PostPage({
 export const getServerSideProps = async ({ params }) => {
   const globalData = getGlobalData();
   const posts = await getPostBySlug(params.id);
+  
  
 
   return {

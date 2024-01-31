@@ -26,6 +26,7 @@ export default function Index({ posts, globalData }) {
               <Link
                 as={`/posts/${post.id}`}
                 href={`/posts/${post.id}`}
+                
               >
                 <a className="py-6 lg:py-10 px-6 lg:px-16 block focus:outline-none focus:ring-4">
                   {post.created_ate && (
@@ -36,7 +37,7 @@ export default function Index({ posts, globalData }) {
                   <h2 className="text-2xl md:text-3xl">{post.title}</h2>
                   {post.description && (
                     <p className="mt-3 text-lg opacity-60">
-                      {post.description}
+                      {post.description} 
                     </p>
                   )}
                   <ArrowIcon className="mt-4" />
