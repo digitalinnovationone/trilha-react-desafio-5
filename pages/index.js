@@ -9,6 +9,7 @@ import { getGlobalData } from '../utils/global-data';
 import SEO from '../components/SEO';
 
 export default function Index({ posts, globalData }) {
+
   return (
     <Layout>
       <SEO title={globalData.name} description={globalData.blogTitle} />
@@ -36,7 +37,7 @@ export default function Index({ posts, globalData }) {
                   <h2 className="text-2xl md:text-3xl">{post.title}</h2>
                   {post.description && (
                     <p className="mt-3 text-lg opacity-60">
-                      {post.description}
+                      {post.description} 
                     </p>
                   )}
                   <ArrowIcon className="mt-4" />
@@ -62,7 +63,6 @@ export default function Index({ posts, globalData }) {
 export async function getServerSideProps() {
   const posts = await getPosts();
   const globalData = getGlobalData()
-
 
   return { props: { posts, globalData } };
 }

@@ -1,9 +1,9 @@
 import { api } from '../services/api'
 
 export const getPosts = async () => {
-    const {data} = await api.get('/posts'); 
+    const { data } = await api.get('/post');
 
-    if(data){
+    if (data) {
         return data;
     }
 
@@ -11,9 +11,19 @@ export const getPosts = async () => {
 }
 
 export const getPostBySlug = async (id) => {
+  console.log('getPostBySlug - ID:', id);
+  try {
+    const { data } = await api.get(`/post?id=eq.${id}`);
 
-    //TODO: BUSCAR UM POST EM ESPECIFICO.
-    //const {data} = await api.get(`/post?id=eq.${id}`)
+    console.log('getPostBySlug - Data:', data);
 
-    return {}
+    if (!data || data.length === 0) {
+        return null;
+    }
+
+    return data;
+  } catch (error) {
+    console.error(`Error fetching post with ID ${id}:`, error);
+    return null; // Mudança aqui, retornar null em caso de erro
+  }
 }
