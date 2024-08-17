@@ -1,6 +1,6 @@
 const plugin = require('tailwindcss/plugin');
 const pluginTypography = require('@tailwindcss/typography');
-const { COLOR_THEMES, FONT_THEMES } = require('../themes');
+const { COLOR_THEMES, FONT_THEMES } = require('../../themes');
 
 const THEME = process.env.BLOG_THEME || 'default';
 const FONT_PRIMARY = process.env.BLOG_FONT_HEADINGS || 'sans-serif';
