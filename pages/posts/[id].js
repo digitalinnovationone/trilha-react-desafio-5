@@ -19,10 +19,11 @@ const components = {
   Head,
 };
 
-export default function PostPage({
-  posts,
-  globalData,
-}) {
+export default function PostPage({ post, globalData }) {
+  console.log(post)  
+  if (!post) {
+    return <p>Post não encontrado</p>;
+  }
   return (
     <Layout>
       <SEO
