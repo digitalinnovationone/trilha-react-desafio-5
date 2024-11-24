@@ -1,19 +1,29 @@
-import { api } from '../services/api'
+import supabase from '../utils/supabase'; // Ajuste o caminho conforme necessário
 
 export const getPosts = async () => {
-    const {data} = await api.get('/posts'); 
+    const { data, error } = await supabase
+        .from('posts')
+        .select('*');
 
-    if(data){
-        return data;
+    if (error) {
+        console.error('Error fetching posts:', error);
+        return [];
     }
 
-    return []
+    return data;
 }
 
 export const getPostBySlug = async (id) => {
+    const { data, error } = await supabase
+        .from('posts')
+        .select('*')
+        .eq('id', id)
+        .single();
 
-    //TODO: BUSCAR UM POST EM ESPECIFICO.
-    //const {data} = await api.get(`/post?id=eq.${id}`)
+    if (error) {
+        console.error('Error fetching post:', error);
+        return {};
+    }
 
-    return {}
+    return data;
 }

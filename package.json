@@ -23,8 +23,9 @@
   "dependencies": {
     "@mapbox/rehype-prism": "^0.8.0",
     "@netlify/plugin-nextjs": "4.14",
+    "@supabase/supabase-js": "^2.45.2",
     "@tailwindcss/typography": "^0.5.0",
-    "axios": "^0.27.2",
+    "axios": "^1.7.5",
     "classnames": "^2.3.1",
     "cypress": "^10.1.0",
     "gray-matter": "^4.0.2",
