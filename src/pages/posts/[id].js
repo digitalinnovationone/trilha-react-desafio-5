@@ -1,8 +1,5 @@
 import { getGlobalData } from '../../utils/global-data';
-import {
-  getPostBySlug,
-} from '../../utils/mdx-utils';
-
+import {getPostBySlug, getPosts} from '../../utils/mdx-utils';
 import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -21,13 +18,14 @@ const components = {
 
 export default function PostPage({
   posts,
+  post,
   globalData,
 }) {
   return (
     <Layout>
       <SEO
-        title={`${posts.title} - ${globalData.name}`}
-        description={posts.description}
+        title={`{posts?.title} - {globalData.name}`}
+        description={posts?.description}
       />
       <Header name={globalData.name} />
       <article className="px-6 md:px-0">
@@ -36,14 +34,19 @@ export default function PostPage({
             {posts?.title}
           </h1>
           {posts?.description && (
-            <p className="text-xl mb-4">{posts?.description}</p>
+            <p className="text-xl mb-4 text-center">{posts?.description}</p>
           )}
         </header>
         <main>
-          <article className="prose dark:prose-dark">
-            {posts.body}
+          <article className="text-center mt-10">
+            {posts?.body} 
           </article>
+          <br/>
+          <img className="mt-5 flex-row justify-self-center" src={posts.image_url}></img>
         </main>
+      </article>
+      <article className="prose dark:prose-dark mt-10">
+            {posts.created_at}
       </article>
       <Footer copyrightText={globalData.footerText} />
       <GradientBackground
@@ -62,11 +65,10 @@ export const getServerSideProps = async ({ params }) => {
   const globalData = getGlobalData();
   const posts = await getPostBySlug(params.id);
  
-
   return {
     props: {
       globalData,
-      posts,
+      posts
     },
   };
 };
