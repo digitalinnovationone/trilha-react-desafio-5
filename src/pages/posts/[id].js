@@ -1,8 +1,5 @@
 import { getGlobalData } from '../../utils/global-data';
-import {
-  getPostBySlug,
-} from '../../utils/mdx-utils';
-
+import {getPostBySlug, getPosts} from '../../utils/mdx-utils';
 import { MDXRemote } from 'next-mdx-remote';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -21,13 +18,14 @@ const components = {
 
 export default function PostPage({
   posts,
+  post,
   globalData,
 }) {
   return (
     <Layout>
       <SEO
-        title={`${posts.title} - ${globalData.name}`}
-        description={posts.description}
+        title={`{posts?.title} - {globalData.name}`}
+        description={posts?.description}
       />
       <Header name={globalData.name} />
       <article className="px-6 md:px-0">
@@ -40,8 +38,12 @@ export default function PostPage({
           )}
         </header>
         <main>
-          <article className="prose dark:prose-dark">
-            {posts.body}
+          <article>
+            {posts?.body} 
+          </article>
+          <br/>
+          <article className="prose dark:prose-dark text-center">
+            {posts.created_at}
           </article>
         </main>
       </article>
@@ -62,11 +64,10 @@ export const getServerSideProps = async ({ params }) => {
   const globalData = getGlobalData();
   const posts = await getPostBySlug(params.id);
  
-
   return {
     props: {
       globalData,
-      posts,
+      posts
     },
   };
 };
