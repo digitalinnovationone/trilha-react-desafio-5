@@ -12,8 +12,17 @@ export const getPosts = async () => {
 
 export const getPostBySlug = async (id) => {
 
-    //TODO: BUSCAR UM POST EM ESPECIFICO.
-    //const {data} = await api.get(`/post?id=eq.${id}`)
+  const { data, error } = await supabase
+    .from('post')
+    .select('*')
+    .eq('id', id)
+    .single(); 
 
-    return {}
+  if (error) {
+    console.error('Erro ao buscar post:', error);
+    return null;
+  }
+
+  return data;
 }
+
