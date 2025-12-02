@@ -19,31 +19,41 @@ const components = {
   Head,
 };
 
-export default function PostPage({
-  posts,
-  globalData,
-}) {
+export default function PostPage({ posts, globalData }) {
+  const notFound = !posts || !posts.id;
   return (
     <Layout>
       <SEO
-        title={`${posts.title} - ${globalData.name}`}
-        description={posts.description}
+        title={notFound ? `Post não encontrado - ${globalData.name}` : `${posts.title} - ${globalData.name}`}
+        description={notFound ? 'Este post não existe ou foi removido.' : posts.description}
       />
       <Header name={globalData.name} />
       <article className="px-6 md:px-0">
-        <header>
-          <h1 className="text-3xl md:text-5xl dark:text-white text-center mb-12">
-            {posts?.title}
-          </h1>
-          {posts?.description && (
-            <p className="text-xl mb-4">{posts?.description}</p>
-          )}
-        </header>
-        <main>
-          <article className="prose dark:prose-dark">
-            {posts.body}
-          </article>
-        </main>
+        {notFound ? (
+          <div className="text-center py-20">
+            <h1 className="text-3xl md:text-5xl dark:text-white mb-6">Post não encontrado</h1>
+            <p className="text-xl mb-4">O post solicitado não existe ou foi removido.</p>
+            <Link href="/">
+              <span className="text-blue-500 underline cursor-pointer">Voltar para a home</span>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <header>
+              <h1 className="text-3xl md:text-5xl dark:text-white text-center mb-12">
+                {posts?.title}
+              </h1>
+              {posts?.description && (
+                <p className="text-xl mb-4">{posts?.description}</p>
+              )}
+            </header>
+            <main>
+              <article className="prose dark:prose-dark">
+                {posts.body}
+              </article>
+            </main>
+          </>
+        )}
       </article>
       <Footer copyrightText={globalData.footerText} />
       <GradientBackground
