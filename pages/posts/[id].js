@@ -36,7 +36,9 @@ export default function PostPage({
             {posts?.title}
           </h1>
           {posts?.description && (
+            <>
             <p className="text-xl mb-4">{posts?.description}</p>
+            </>
           )}
         </header>
         <main>
@@ -54,6 +56,11 @@ export default function PostPage({
         variant="small"
         className="absolute bottom-0 opacity-20 dark:opacity-10"
       />
+      <Link href="/">
+        <a className="text-lg font-semibold text-blue-500 hover:text-blue-700">
+          ← Voltar
+        </a>
+      </Link>
     </Layout>
   );
 }
