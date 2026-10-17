@@ -28,4 +28,22 @@ describe('blog experience', () => {
       }
     );
   });
+
+  it('changes the page background when switching to dark theme', () => {
+    cy.contains('button', 'Claro').click();
+    cy.get('div.min-h-screen')
+      .should('have.css', 'background-color', 'rgb(248, 250, 252)')
+      .contains('button', 'Escuro')
+      .click();
+    cy.get('div.min-h-screen').should(
+      'have.css',
+      'background-color',
+      'rgb(30, 41, 59)'
+    );
+    cy.get('article.group').should(
+      'have.css',
+      'background-color',
+      'rgb(15, 23, 42)'
+    );
+  });
 });

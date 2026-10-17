@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 transition-colors dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen bg-slate-50 text-slate-800 transition-colors dark:bg-slate-800 dark:text-slate-100">
       <div className="mx-auto w-full max-w-4xl px-5 sm:px-8">{children}</div>
     </div>
   );
