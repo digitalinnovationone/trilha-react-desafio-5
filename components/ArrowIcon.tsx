@@ -1,12 +1,19 @@
-export default function ArrowIcon({ className, color = 'text-primary' }) {
+import type { SVGProps } from 'react';
+
+type ArrowIconProps = SVGProps<SVGSVGElement> & {
+  color?: string;
+};
+
+export default function ArrowIcon({
+  color = 'text-primary',
+  ...props
+}: ArrowIconProps) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      aria-hidden="true"
       fill="none"
       viewBox="0 0 24 24"
-      className={className}
+      {...props}
     >
       <path
         className={`stroke-current ${color}`}
@@ -14,7 +21,7 @@ export default function ArrowIcon({ className, color = 'text-primary' }) {
         strokeLinejoin="round"
         strokeWidth="2"
         d="M5 12h14M12 19l7-7-7-7"
-      ></path>
+      />
     </svg>
   );
 }
